@@ -9,7 +9,11 @@ public class App {
         var lector = Factory.crearLectorCompra();
         var grabador = Factory.crearGrabadorCompra();
         
-        var compra = lector.leer();
-        grabador.grabar(compra);
+        for (;;) {
+        	var compra = lector.leer();
+            grabador.grabar(compra);
+            System.out.println("");
+            System.out.println("");
+        }
     }
 }
