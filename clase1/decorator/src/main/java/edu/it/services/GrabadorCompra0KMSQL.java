@@ -4,6 +4,8 @@ import edu.it.model.Compra0KM;
 
 public class GrabadorCompra0KMSQL implements GrabadorCompra0KM {
 	public void grabar(Compra0KM compra0KM) {
+		System.out.println("");
+		System.out.println("INSERT INTO COMPRAS ....");
 		System.out.println("Grabando compra");
 		System.out.println("Nombre");
 		System.out.println(compra0KM.nombreCliente);

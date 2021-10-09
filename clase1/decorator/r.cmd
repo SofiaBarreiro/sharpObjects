@@ -1,1 +1,1 @@
-java -jar target\JPA-1.1.jar
+java -jar target\Patrones-1.1.jar
