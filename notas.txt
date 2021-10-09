@@ -1,0 +1,204 @@
+----------------------------------------------------------------------
+Patrones de diseño
+----------------------------------------------------------------------
+
+Paradigmas de programación ?
+   Funcional - Pura      |  Funcional
+             - Normal    |
+   Estructurada          |  IMPERATIVO
+   Objectos - Eventos    |  
+            - Aspectos   |
+
+
+   Programacion funcional, es un idea de programacion que permite tratar
+   a las funciones como datos.
+
+   map([1,2,3,4,5], z => z + 1) -> [2,3,4,5,6]
+
+   Porque pura o impura.
+
+   La "programacion funcional" pura divide las funciones puras de aquellas 
+   que tienen "side effects"
+
+   Side effects:
+
+   Escribir en un archivo
+   Leer de un archivo
+   leer de la consola
+   Leer variables globales (Incluyendo fecha, web service, etc)
+
+   Ejemplos de funciones puras.
+
+   if (fx(3) == zx(4)) -> Si las fnciones son puras, la sentencia tb.
+   fx(x) { x + 5 } y zx(x) { x * 2 }
+
+   Toda la expresion es pura.
+
+   Double total = (calculoIva(getCompraTotal(), TIPO_CONTRIBUYENTE_HOTELERIA);
+
+   Definicion de una funcion pura: QUE ES ?
+
+   una funcion que dado un input i1 siempre responde el mismo output o1
+ 
+   masDos(4) -> 6
+   sumar(2,4) -> 6
+   sumar(1,5) -> 6
+
+   Para que sirve las funciones puras ?
+
+   Testear ej. Si yo tengo calculoIva(100, TIPO_CONTRIBUYENTE_GASTRONOMICO)
+   Siempre tiene que dar lo mismo.
+
+   -----------------------------------------------------------------------------
+
+   Hacer el juego de piedra papel o tijera
+
+   tomar del input jugador1
+   tomar del input jugador2
+
+   if (jugador1 == jugador2) ... las comparaciones.
+
+   fnPPT(j1, j2) -> EMPATE, GANAJ1, GANAJ2
+
+   [PIEDRA][PIEDRA] = EMPATE
+   [PIEDRA][PAPEL] = GANAJ2
+   [PIEDRA][TIJERA] = GANAJ1
+    
+   ...
+
+   Resto de los casos de uso
+
+   fnPPT(J1, j2) {
+      return [j1, j2];
+   }
+
+   Mas ejemplos de funciones puras:
+
+   Hash o Checksum -> md5, sha1, sha256, sha512, sha1024
+
+   Ultima reflexion sobre las funciones puras en los lenguajes
+   como haskell.
+
+   0 * (2 + 3 + 15 / obtenerInput() * 7.55 + 12)
+
+   java hace 0 * el resultado de la division ....
+
+----------------------------------------------------------------------
+Un ejemplo de logica de negocio pura y compleja
+----------------------------------------------------------------------
+
+Promociones: Si paga con Galicia, y es Jueves, y es jubilado: 10%
+             Si paga con Nacion, culquierDia, tiene un 5%
+             Si paga con Mercado pago y su primer compra con mercado 
+             pago tiene 50%
+
+Que son los side effect ?
+
+suma(a, b, fechaActual) {
+   if (fechaActual == "20211009") {
+      return a + b;
+   }               
+   else {
+      return a + b + 1;
+   }
+}
+
+VS
+
+suma(a, b) {
+   if (fechaActual == "20211009") {
+      return a + b;
+   }               
+   else {
+      return a + b + 1;
+   }
+}
+
+----------------------------------------------------------------------
+Programacion estrucutrada
+----------------------------------------------------------------------
+
+Lenguajes: c, phyton, java, c#, php, go.
+Caracteristicas: estrucutras, funciones, procedimientos.
+                 
+funcion(estructuraDeDatos) -> otraEstruraDeDatos
+procedimiento(estrucutraDeDatos) -> hace algo con esa estructura
+
+Encapsulamiento ? Tienen lo lenguajes estructurados ?
+
+En cuanto a las variables, hay encapsulamiento.
+Dentro del scope de una funcion o un procedimiento el scope es privado.
+
+A nivel de modulos ? librerias ? hay encapsulmiento ?
+
+pagos.h      pagos.h exporta aquellas funciones que solo quiere exportar
+pagos.obj
+
+Polimorfismo tiene ?
+
+pagos.h - el api para ambos tipos de gateway de pago es el mismo.
+pagosVisa.obj
+pagosML.obj
+
+Si, pero en tiempo de compilacion no se puede cambiar de impl mientras
+se ejecuta.
+
+----------------------------------------------------------------------
+Programacion orientada a objetos
+----------------------------------------------------------------------
+
+JDBC ejemplo de polimorfismo
+JPA  ejemplo de polimorfismo
+
+J2EE Intento medio fallido de hacer apis cuyas implementaciones sean
+variadas y sean open source comerciales.
+
+Encapsulamiento:
+
+   En que se diferencia de encapsulamiento de los estructurados.
+
+   2 scopes el de la clase y el del procedimiento o metodo o funcion
+
+   el scope de la clase tengo la posibilidad private, public, protected
+   default.
+
+class A {
+   private servicioGrabacion srvGra;
+
+   public grabarEstructura(B b) {
+       int a = b.getTotal() + 100;
+       srvGra.grabar(b);
+   }
+}
+
+La otra gran diferencia es el tema del manejo de los objetos o estructuras
+
+En estrucutrado 
+
+   modificarImporteCliente(Cliente c, 100) -> Cliente
+
+   c.modificarImporteCliente(100);
+
+----------------------------------------------------------------------
+Herencia
+----------------------------------------------------------------------
+
+Tipos de herencia
+
+Herencia de tipos
+
+Pago {}
+PagoExpres extends Pago {}
+
+Persona
+Cliente extends Persona {}
+
+
+Herencia de funcionalidad
+
+"Tipicamente desde una interfaz, implementamos, la funcionalidad adecuado
+para poder usar polimorfismo y patrones de diseño"... nuestro tema.
+
+Inversion de control... Template Method.
+
+
